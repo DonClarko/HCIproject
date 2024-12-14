@@ -1,0 +1,246 @@
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f8f8f8;
+    color: #000;
+    padding: 20px;
+    position: relative;
+}
+
+/* Heading Styling */
+h1 {
+    font-size: 48px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 span {
+    color: #006BFF;
+}
+
+/* Back Button Styling */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #006BFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background-color: #0056cc;
+}
+
+/* Card Section */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 12px;
+    height: 300px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-text {
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card-button {
+    margin-top: 12px;
+    padding: 12px 28px; /* Increased padding for bigger buttons */
+    background-color: #ffde00;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px; /* Increased font size */
+    cursor: pointer;
+    font-weight: bold; /* Makes the font bold */
+    width: 100%; /* Makes the buttons the same size */
+}
+
+.card-button:hover {
+    background-color: #e6c805;
+}
+
+/* Focused Card Style */
+.card.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: 1000;
+    height: 400px;
+    width: 400px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+/* Contact Form Styling */
+.contact-form {
+    margin-top: 15px;
+    text-align: left;
+    display: none;
+}
+
+.contact-form.active {
+    display: block;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contact-form h3 {
+    text-align: center;
+}
+
+.contact-form button {
+    display: block;
+    margin: 20px auto 0; /* Centers the button horizontally */
+    background-color: #006BFF;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #0056cc;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 500;
+    display: none;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 900px) {
+.card-container {
+grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+}
+
+h1 {
+font-size: 40px; /* Adjust heading size for medium screens */
+}
+
+.back-btn {
+padding: 8px 16px;
+font-size: 14px; /* Smaller button on medium screens */
+}
+
+/* Adjust the card size for better spacing */
+.card.active {
+width: 80%; /* Reduce width for better spacing on smaller screens */
+height: auto; /* Allow card height to adjust */
+}
+
+/* Contact Form Styling on Medium Screens */
+.contact-form {
+width: 90%; /* Make form responsive */
+padding: 20px;
+margin: 0 auto;
+}
+
+.contact-form input, .contact-form textarea {
+width: 100%; /* Full width of form */
+padding: 10px;
+font-size: 14px; /* Smaller font size for better fit */
+}
+
+.contact-form button {
+width: 100%; /* Full width of form button */
+padding: 12px;
+}
+}
+
+@media screen and (max-width: 600px) {
+.card-container {
+grid-template-columns: 1fr; /* 1 column on small screens */
+}
+
+h1 {
+font-size: 36px; /* Smaller font size for heading */
+margin-top: 50px; /* Adjust the margin-top of the heading to prevent overlap with the back button */
+}
+
+.back-btn {
+padding: 8px 16px;
+font-size: 14px; /* Smaller button on mobile */
+}
+
+/* Adjust card size for smaller screens */
+.card.active {
+width: 70%; /* Reduce card width */
+height: 50%; /* Allow card height to adjust */
+}
+
+/* Adjust contact form input and textarea for smaller screens */
+.contact-form {
+width: 90%;
+padding: 20px;
+margin: 0 auto;
+}
+
+.contact-form input, .contact-form textarea {
+padding: 12px;
+font-size: 14px; /* Adjust font size for mobile */
+}
+
+.contact-form button {
+padding: 14px 0;
+}
+}
+

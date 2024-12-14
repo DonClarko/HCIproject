@@ -1,0 +1,253 @@
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f8f8f8;
+    color: #000;
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.logo img {
+    width: 30px;
+    margin-right: 8px;
+}
+
+.logo span {
+    display: block; /* Ensure it is always block */
+}
+
+.buttons button {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.home-btn {
+    color: #006BFF; /* Green color for Home button */
+    border-color: #006BFF;
+}
+
+.login-btn {
+    color: #006BFF;
+    border-color: #006BFF;
+}
+
+.signup-btn {
+    color: #006BFF;
+    border-color: #006BFF;
+}
+
+.buttons button:hover {
+    background-color: #006BFF;
+    color: white;
+    border-color: #006BFF;
+}
+
+/* Form Styling */
+.form-container {
+    display: none;
+    width: 80%;
+    max-width: 800px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    overflow-y: auto;
+    max-height: 90vh; /* Prevent the form from being too tall on mobile */
+}
+
+.form-content {
+    width: 60%;
+    text-align: center;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container input {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-container button {
+    padding: 15px;
+    background-color: #006BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.quote {
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 16px;
+    font-style: italic;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.text-content {
+    max-width: 50%;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.title span {
+    color: #007bff;
+}
+
+.description {
+    margin: 20px 0;
+    color: #555;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.get-started {
+    background-color: #ffde00;
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.get-started:hover {
+    background-color: #ffbf00;
+}
+
+.illustration {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.illustration img {
+    width: 100%; /* Ensure the image takes full width of the container */
+    max-width: 600px; /* Limit the maximum size of the image */
+    object-fit: cover; /* Maintain aspect ratio without distortion */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
+}
+
+@media (max-width: 768px) {
+.hero {
+flex-direction: column; /* Stack the content vertically */
+text-align: center;
+}
+
+.text-content {
+max-width: 100%;
+margin-bottom: 30px;
+}
+
+.illustration img {
+width: 100%; /* Ensure the image takes full width on smaller screens */
+max-width: 600px; /* Keep the max width */
+object-fit: contain; /* Make sure the image fits inside the container */
+height: auto; /* Keep the aspect ratio intact */
+}
+
+.form-container {
+flex-direction: column; /* Stack form content vertically */
+max-width: 90%; /* Ensure form takes more width on smaller screens */
+width: auto;
+margin-top: 130px; /* Add top margin to push the form down */
+}
+
+.illustration {
+width: 100%;
+margin-top: 20px;
+}
+
+/* Adjust button size and layout for smaller screens */
+.buttons {
+display: flex;
+justify-content: space-between;
+width: 100%; /* Ensure full width for buttons container */
+margin-top: 20px; /* Space between the buttons and logo */
+}
+
+.buttons button {
+width: 30%; /* Button width to fit horizontally */
+padding: 5px;
+font-size: 16px;
+border-width: 1px; /* Reduce the border size */
+}
+
+.get-started {
+width: 100%;
+max-width: 250px;
+padding: 14px;
+font-size: 18px;
+}
+
+/* Hide Clarcode text when screen is small */
+.logo span {
+display: none;
+}
+}
+
