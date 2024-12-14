@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Layout with Contact Form</title>
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #f8f8f8;
+            color: #000;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Heading Styling */
+        h1 {
+            font-size: 48px;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #006BFF;
+        }
+
+        /* Back Button Styling */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #006BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #0056cc;
+        }
+
+        /* Card Section */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 12px;
+            height: 300px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card-text {
+            margin-top: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .card-button {
+            margin-top: 12px;
+            padding: 12px 28px; /* Increased padding for bigger buttons */
+            background-color: #ffde00;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 4px;
+            font-size: 16px; /* Increased font size */
+            cursor: pointer;
+            font-weight: bold; /* Makes the font bold */
+            width: 100%; /* Makes the buttons the same size */
+        }
+
+        .card-button:hover {
+            background-color: #e6c805;
+        }
+
+        /* Focused Card Style */
+        .card.active {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.2);
+            z-index: 1000;
+            height: 400px;
+            width: 400px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        /* Contact Form Styling */
+        .contact-form {
+            margin-top: 15px;
+            text-align: left;
+            display: none;
+        }
+
+        .contact-form.active {
+            display: block;
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact-form h3 {
+            text-align: center;
+        }
+
+        .contact-form button {
+            display: block;
+            margin: 20px auto 0; /* Centers the button horizontally */
+            background-color: #006BFF;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056cc;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 500;
+            display: none;
+        }
+
+/* Responsive Design */
+@media screen and (max-width: 900px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+
+    h1 {
+        font-size: 40px; /* Adjust heading size for medium screens */
+    }
+
+    .back-btn {
+        padding: 8px 16px;
+        font-size: 14px; /* Smaller button on medium screens */
+    }
+
+    /* Adjust the card size for better spacing */
+    .card.active {
+        width: 80%; /* Reduce width for better spacing on smaller screens */
+        height: auto; /* Allow card height to adjust */
+    }
+
+    /* Contact Form Styling on Medium Screens */
+    .contact-form {
+        width: 90%; /* Make form responsive */
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .contact-form input, .contact-form textarea {
+        width: 100%; /* Full width of form */
+        padding: 10px;
+        font-size: 14px; /* Smaller font size for better fit */
+    }
+
+    .contact-form button {
+        width: 100%; /* Full width of form button */
+        padding: 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card-container {
+        grid-template-columns: 1fr; /* 1 column on small screens */
+    }
+
+    h1 {
+        font-size: 36px; /* Smaller font size for heading */
+        margin-top: 50px; /* Adjust the margin-top of the heading to prevent overlap with the back button */
+    }
+
+    .back-btn {
+        padding: 8px 16px;
+        font-size: 14px; /* Smaller button on mobile */
+    }
+
+    /* Adjust card size for smaller screens */
+    .card.active {
+        width: 70%; /* Reduce card width */
+        height: 50%; /* Allow card height to adjust */
+    }
+
+    /* Adjust contact form input and textarea for smaller screens */
+    .contact-form {
+        width: 90%;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .contact-form input, .contact-form textarea {
+        padding: 12px;
+        font-size: 14px; /* Adjust font size for mobile */
+    }
+
+    .contact-form button {
+        padding: 14px 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <h1>Web <span>Design</span> Overview</h1>
+
+    <!-- Back Button -->
+    <button class="back-btn" onclick="window.location.href='Homepage.html'">Back</button>
+
+    <!-- Background Overlay -->
+    <div class="overlay" id="overlay" onclick="closeCard()"></div>
+
+    <!-- Card Section -->
+    <div class="card-container">
+        <div class="card" id="card1">
+            <img src="assets/static.jpg" alt="Card Image">
+            <div class="card-text">Fixed, no updates unless changed.</div>
+            <button class="card-button" onclick="viewCard(1)">STATIC</button>
+            <div class="contact-form" id="form1">
+                <h3>Contact Us</h3>
+                <label for='name1'>Name</label>
+                <input type='text' id='name1' placeholder='Your Name'>
+                <label for='email1'>Email</label>
+                <input type='email' id='email1' placeholder='Your Email'>
+                <label for='message1'>Message</label>
+                <textarea id='message1' rows='4' placeholder='Your Message'></textarea>
+                <button onclick='submitForm(1)'>Submit</button>
+            </div>
+        </div>
+        <div class="card" id="card2">
+            <img src="assets/dynamic.jpg" alt="Card Image">
+            <div class="card-text">Content updates automatically.</div>
+            <button class="card-button" onclick="viewCard(2)">DYNAMIC</button>
+            <div class="contact-form" id="form2">
+                <h3>Contact Us</h3>
+                <label for='name2'>Name</label>
+                <input type='text' id='name2' placeholder='Your Name'>
+                <label for='email2'>Email</label>
+                <input type='email' id='email2' placeholder='Your Email'>
+                <label for='message2'>Message</label>
+                <textarea id='message2' rows='4' placeholder='Your Message'></textarea>
+                <button onclick='submitForm(2)'>Submit</button>
+            </div>
+        </div>
+        <div class="card" id="card3">
+            <img src="assets/responsive.jpg" alt="Card Image">
+            <div class="card-text">Adjusts layout for different screen sizes.</div>
+            <button class="card-button" onclick="viewCard(3)">RESPONSIVE</button>
+            <div class="contact-form" id="form3">
+                <h3>Contact Us</h3>
+                <label for='name3'>Name</label>
+                <input type='text' id='name3' placeholder='Your Name'>
+                <label for='email3'>Email</label>
+                <input type='email' id='email3' placeholder='Your Email'>
+                <label for='message3'>Message</label>
+                <textarea id='message3' rows='4' placeholder='Your Message'></textarea>
+                <button onclick='submitForm(3)'>Submit</button>
+            </div>
+        </div>
+        <div class="card" id="card4">
+            <img src="assets/ecoomerce.jpg" alt="Card Image">
+            <div class="card-text">Designed for online shopping.</div>
+            <button class="card-button" onclick="viewCard(4)">E-COMMERCE</button>
+            <div class="contact-form" id="form4">
+                <h3>Contact Us</h3>
+                <label for='name4'>Name</label>
+                <input type='text' id='name4' placeholder='Your Name'>
+                <label for='email4'>Email</label>
+                <input type='email' id='email4' placeholder='Your Email'>
+                <label for='message4'>Message</label>
+                <textarea id='message4' rows='4' placeholder='Your Message'></textarea>
+                <button onclick='submitForm(4)'>Submit</button>
+            </div>
+        </div>
+        <div class="card" id="card5">
+            <img src="assets/Singlepage.jpg" alt="Card Image">
+            <div class="card-text">All content on one long scrollable page.</div>
+            <button class="card-button" onclick="viewCard(5)">SINGLE-PAGE</button>
+            <div class="contact-form" id="form5">
+                <h3>Contact Us</h3>
+                <label for='name5'>Name</label>
+                <input type='text' id='name5' placeholder='Your Name'>
+                <label for='email5'>Email</label>
+                <input type='email' id='email5' placeholder='Your Email'>
+                <label for='message5'>Message</label>
+                <textarea id='message5' rows='4' placeholder='Your Message'></textarea>
+                <button onclick='submitForm(5)'>Submit</button>
+            </div>
+        </div>
+        <div class="card" id="card6">
+            <img src="assets/minimalist.jpg" alt="Card Image">
+            <div class="card-text">Simple design with essential elements.</div>
+            <button class="card-button" onclick="viewCard(6)">MINIMALIST</button>
+            <div class="contact-form" id="form6">
+                <h3>Contact Us</h3>
+                <label for='name6'>Name</label>
+                <input type='text' id='name6' placeholder='Your Name'>
+                <label for='email6'>Email</label>
+                <input type='email' id='email6' placeholder='Your Email'>
+                <label for='message6'>Message</label>
+                <textarea id='message6' rows='4' placeholder='Your Message'></textarea>
+                <button onclick='submitForm(6)'>Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+let activeCard = null;
+
+// Function to show form only after clicking View
+function viewCard(cardId) {
+    const card = document.getElementById('card' + cardId);
+    const form = document.getElementById('form' + cardId);
+    const overlay = document.getElementById('overlay');
+
+    // If the card is already active, close it (i.e., return to Web Design Overview)
+    if (card.classList.contains('active')) {
+        closeCard();
+    } else {
+        closeCard();
+        activeCard = card;
+        
+        // Show the card and form
+        card.classList.add('active');
+        if (form) form.classList.add('active');
+        
+        // Show overlay
+        overlay.style.display = 'block';
+    }
+}
+
+function closeCard() {
+    const overlay = document.getElementById('overlay');
+    if (activeCard) {
+        activeCard.classList.remove('active');
+        const form = activeCard.querySelector('.contact-form');
+        if (form) form.classList.remove('active');
+    }
+    activeCard = null;
+    overlay.style.display = 'none';
+}
+
+function submitForm(cardId) {
+    alert('Form for Card ' + cardId + ' submitted!');
+}
+
+    </script>
+
+</body>
+</html>
